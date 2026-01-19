@@ -180,14 +180,20 @@ header, main, footer {
 }
 
 /* =============================================
-   Header - Transparent Floating
+   Gallery Wrapper - Contains header sticky boundary
+   ============================================= */
+.gallery-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+/* =============================================
+   Header - Sticky within Gallery
    ============================================= */
 header {
     padding: var(--space-md) var(--space-md);
-    position: fixed;
+    position: sticky;
     top: 0;
-    left: 0;
-    right: 0;
     z-index: 100;
     background: transparent;
     backdrop-filter: none;
@@ -274,7 +280,18 @@ header {
     transform: translateY(0);
 }
 
-/* Header Navigation */
+/* Fixed Navigation - Always visible */
+.fixed-nav {
+    position: fixed;
+    top: var(--space-md);
+    right: var(--space-md);
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+    z-index: 200;
+}
+
+/* Header Navigation (legacy, kept for reference) */
 .header-nav {
     display: flex;
     gap: var(--space-md);
@@ -387,7 +404,11 @@ main {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--space-md);
-    padding: var(--space-sm);
+    padding: var(--space-lg) var(--space-md);
+    max-width: 1600px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
 }
 
 /* =============================================
@@ -1027,6 +1048,12 @@ footer {
 }
 
 @media (max-width: 480px) {
+    .fixed-nav {
+        top: var(--space-sm);
+        right: var(--space-sm);
+        gap: var(--space-sm);
+    }
+
     .header-content {
         flex-direction: column;
         gap: var(--space-sm);
