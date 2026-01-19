@@ -25,32 +25,32 @@
         });
     }
 
-    // Touch support for flip cards on mobile devices
+    // Touch support for showing title overlay on mobile devices (no flip)
     function initTouchFlip() {
         const cards = document.querySelectorAll('.art-card');
 
         cards.forEach(function(card) {
             card.addEventListener('click', function(e) {
-                // On touch devices, toggle the flipped class
+                // On touch devices, toggle the active class to show title overlay (like desktop hover)
                 if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
                     // Close any other open cards
                     cards.forEach(function(otherCard) {
                         if (otherCard !== card) {
-                            otherCard.classList.remove('flipped');
+                            otherCard.classList.remove('touch-active');
                         }
                     });
 
                     // Toggle this card
-                    card.classList.toggle('flipped');
+                    card.classList.toggle('touch-active');
                 }
             });
         });
 
-        // Close flipped cards when clicking outside
+        // Close active cards when clicking outside
         document.addEventListener('click', function(e) {
             if (!e.target.closest('.art-card')) {
                 cards.forEach(function(card) {
-                    card.classList.remove('flipped');
+                    card.classList.remove('touch-active');
                 });
             }
         });

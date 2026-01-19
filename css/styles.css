@@ -545,7 +545,7 @@ main {
 }
 
 .art-card:hover .frame-container::after,
-.art-card.flipped .frame-container::after {
+.art-card.touch-active .frame-container::after {
     opacity: 1;
 }
 
@@ -661,7 +661,7 @@ main {
 }
 
 .art-card:hover .artwork-mat img,
-.art-card.flipped .artwork-mat img {
+.art-card.touch-active .artwork-mat img {
     filter: brightness(0.95) contrast(1.05) blur(1.5px);
     transform: scale(0.97);
 }
@@ -688,7 +688,7 @@ main {
 }
 
 .art-card:hover .card-back,
-.art-card.flipped .card-back {
+.art-card.touch-active .card-back {
     opacity: 1;
 }
 
@@ -1107,10 +1107,6 @@ footer {
 
 /* Touch device support */
 @media (hover: none) {
-    .art-card:active .card-inner {
-        transform: rotateY(180deg);
-    }
-
     .frame-container:hover {
         transform: none;
     }
