@@ -24,12 +24,12 @@
     --cloud-shadow: #c5d8e8;
 
     /* Gold Accent Spectrum */
-    --gold-deep: #8b6914;
-    --gold-rich: #b8960b;
-    --gold-primary: #c9a227;
-    --gold-bright: #d4af37;
-    --gold-light: #e8c547;
-    --gold-pale: #f0d77a;
+    --gold-deep: #6b5010;
+    --gold-rich: #8a7008;
+    --gold-primary: #a6851f;
+    --gold-bright: #b8962f;
+    --gold-light: #c9a83c;
+    --gold-pale: #d4b85a;
 
     /* Text Colors */
     --text-primary: #1a2a3a;
@@ -274,6 +274,51 @@ header {
     transform: translateY(0);
 }
 
+/* Header Navigation */
+.header-nav {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+}
+
+.nav-link {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    padding: 0.75rem 1.5rem;
+    border: 1px solid var(--text-muted);
+    border-radius: 0;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gold-primary);
+    transform: translateY(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: -1;
+}
+
+.nav-link:hover {
+    color: white;
+    border-color: var(--gold-primary);
+}
+
+.nav-link:hover::before {
+    transform: translateY(0);
+}
+
 /* =============================================
    Main Content
    ============================================= */
@@ -369,6 +414,22 @@ main {
 .art-card:nth-child(10) { animation-delay: 1.3s; }
 .art-card:nth-child(11) { animation-delay: 1.4s; }
 .art-card:nth-child(12) { animation-delay: 1.5s; }
+
+/* Wide art card - spans 3 columns */
+.art-card--wide {
+    grid-column: span 3;
+    height: 520px;
+}
+
+.art-card--wide .frame-container {
+    max-width: 100%;
+}
+
+.art-card--wide .artwork-mat img {
+    height: 400px;
+    object-fit: contain;
+    background: #0d0d0d;
+}
 
 @keyframes scrollFadeIn {
     to {
@@ -766,6 +827,56 @@ main {
 }
 
 /* =============================================
+   About Section
+   ============================================= */
+.about {
+    padding: var(--space-xl) var(--space-md);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about .section-title {
+    font-size: clamp(3rem, 10vw, 8rem);
+}
+
+.about .section-title::before {
+    content: 'About the Artist';
+}
+
+.about-container {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: var(--space-lg);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 20px 60px rgba(74, 144, 194, 0.15);
+    position: relative;
+}
+
+.about-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+}
+
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.about-text {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+/* =============================================
    Footer - Minimal
    ============================================= */
 footer {
@@ -825,6 +936,15 @@ footer {
         grid-template-columns: repeat(2, 1fr);
         gap: var(--space-md);
     }
+
+    .art-card--wide {
+        grid-column: span 2;
+        height: 480px;
+    }
+
+    .art-card--wide .artwork-mat img {
+        height: 360px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -857,6 +977,15 @@ footer {
         height: 440px;
     }
 
+    .art-card--wide {
+        grid-column: span 1;
+        height: 320px;
+    }
+
+    .art-card--wide .artwork-mat img {
+        height: 200px;
+    }
+
     .artwork-mat img {
         height: 300px;
     }
@@ -885,8 +1014,14 @@ footer {
         gap: var(--space-sm);
     }
 
+    .header-nav {
+        flex-wrap: wrap;
+        gap: var(--space-sm);
+        justify-content: center;
+    }
+
     main {
-        padding-top: 140px;
+        padding-top: 160px;
     }
 
     .section-title {

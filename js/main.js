@@ -5,14 +5,15 @@
 (function() {
     'use strict';
 
-    // Smooth scroll for contact link (fallback for browsers without CSS smooth scroll)
+    // Smooth scroll for nav links (fallback for browsers without CSS smooth scroll)
     function initSmoothScroll() {
-        const contactLink = document.querySelector('.contact-link');
+        const navLinks = document.querySelectorAll('.nav-link');
 
-        if (contactLink) {
-            contactLink.addEventListener('click', function(e) {
+        navLinks.forEach(function(link) {
+            link.addEventListener('click', function(e) {
                 e.preventDefault();
-                const target = document.querySelector('#contact');
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
 
                 if (target) {
                     target.scrollIntoView({
@@ -21,7 +22,7 @@
                     });
                 }
             });
-        }
+        });
     }
 
     // Touch support for flip cards on mobile devices
